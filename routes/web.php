@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Job;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -8,30 +9,11 @@ Route::get('/', function () {
 
 Route::get('/jobs', function () {
     return view('jobs', [
-        "jobs" => [
-            ["id" => 1, "title" => "PHP Developer", "description" => "This is an awesome job", "salary" => "$60k"],
-            ["id" => 2, "title" => "Python Developer", "description" => "This is an awesome job", "salary" => "$60k"],
-            ["id" => 3, "title" => "Ruby Developer", "description" => "This is an awesome job", "salary" => "$60k"],
-            ["id" => 4, "title" => "Java Developer", "description" => "This is an awesome job", "salary" => "$60k"],
-            ["id" => 5, "title" => "C# Developer", "description" => "This is an awesome job", "salary" => "$60k"]
-        ]]);
+        "jobs" => Job::all()]);
 });
 
 Route::get("/jobs/{id}", function ($id) {
-    $jobs = [
-        ["id" => 1, "title" => "PHP Developer", "description" => "This is an awesome job", "salary" => "$60k"],
-        ["id" => 2, "title" => "Python Developer", "description" => "This is an awesome job", "salary" => "$60k"],
-        ["id" => 3, "title" => "Ruby Developer", "description" => "This is an awesome job", "salary" => "$60k"],
-        ["id" => 4, "title" => "Java Developer", "description" => "This is an awesome job", "salary" => "$60k"],
-        ["id" => 5, "title" => "C# Developer", "description" => "This is an awesome job", "salary" => "$60k"]
-    ];
-
-    $job = collect($jobs)->firstWhere("id", $id);
-    if (!$job) {
-        abort(404);
-    }
-
-    return view("job", ["job" => $job]);
+    return view("job", ["job" => Job::find($id)]);
 });
 
 Route::get('/contact', function () {
