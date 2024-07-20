@@ -2,6 +2,7 @@
     <x-slot:heading>Jobs</x-slot:heading>
 
     <div class="flex flex-row flex-wrap justify-evenly">
+
         @foreach($jobs as $job)
             <article class="mb-6 bg-white shadow rounded-lg overflow-hidden w-72 flex flex-col">
                 <div class="px-6 py-4">
@@ -22,5 +23,8 @@
                 </div>
             </article>
         @endforeach
+    </div>
+    <div>
+        {{$jobs->links()}}
     </div>
 </x-layout>

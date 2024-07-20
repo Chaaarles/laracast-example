@@ -8,7 +8,7 @@ Route::get('/', function () {
 });
 
 Route::get('/jobs', function () {
-    $jobs = JobListing::with('employer', 'tags')->get();
+    $jobs = JobListing::with('employer', 'tags')->paginate(8);
 
     return view('jobs', [
         "jobs" => $jobs]);
