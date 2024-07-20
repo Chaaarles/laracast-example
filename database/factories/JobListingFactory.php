@@ -20,7 +20,7 @@ class JobListingFactory extends Factory
     {
         return [
             "title" => fake()->jobTitle(),
-            "description" => fake()->paragraph(),
+            "description" => fake()->sentence(),
             "salary" => "600.000kr",
             "employer_id" => Employer::factory(),
         ];
