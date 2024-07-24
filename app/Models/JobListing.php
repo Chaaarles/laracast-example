@@ -11,7 +11,7 @@ class JobListing extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'salary'];
+    protected $guarded = [];
 
     public function employer(): BelongsTo
     {
