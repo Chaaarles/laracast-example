@@ -23,6 +23,14 @@ Route::get('/jobs/{id}', function ($id) {
 });
 
 Route::post('/jobs', function () {
+    request()->validate(
+        [
+            'title' => ['required', 'min:3'],
+            'description' => 'required',
+            'salary' => 'required',
+        ]
+    );
+
     JobListing::create([
         'title' => request('title'),
         'description' => request('description'),
