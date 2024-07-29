@@ -1,75 +1,9 @@
 <?php
 
-use App\Models\JobListing;
+use App\Http\Controllers\JobController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::view('/', 'home');
+Route::view('/contact', 'contact');
 
-Route::get('/jobs', function () {
-    $jobs = JobListing::with('employer', 'tags')->latest()->paginate(8);
-
-    return view('jobs.index', [
-        'jobs' => $jobs]);
-});
-
-Route::get('/jobs/create', function () {
-    return view('jobs.create');
-});
-
-Route::get('/jobs/{id}', function ($id) {
-    return view('jobs.show', ['job' => JobListing::find($id)]);
-});
-
-Route::get('/jobs/{id}/edit', function ($id) {
-    return view('jobs.edit', ['job' => JobListing::find($id)]);
-});
-
-Route::post('/jobs', function () {
-    request()->validate(
-        [
-            'title' => ['required', 'min:3'],
-            'description' => 'required',
-            'salary' => 'required',
-        ]
-    );
-
-    JobListing::create([
-        'title' => request('title'),
-        'description' => request('description'),
-        'employer_id' => 1,
-        'salary' => request('salary'),
-    ]);
-
-    return redirect('/jobs');
-});
-
-Route::patch('/jobs/{job}', function (JobListing $job) {
-    request()->validate(
-        [
-            'title' => ['required', 'min:3'],
-            'description' => 'required',
-            'salary' => 'required',
-        ]
-    );
-
-    $job->update([
-        'title' => request('title'),
-        'description' => request('description'),
-        'employer_id' => 1,
-        'salary' => request('salary'),
-    ]);
-
-    return redirect('/jobs/'.$job->id);
-});
-
-Route::delete('/jobs/{job}', function (JobListing $job) {
-    $job->delete();
-
-    return redirect('/jobs');
-});
-
-Route::get('/contact', function () {
-    return view('contact');
-});
+Route::resource('jobs', JobController::class);
