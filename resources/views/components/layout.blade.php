@@ -27,6 +27,18 @@
                         </div>
                     </div>
                 </div>
+                <div class="flex items-center">
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            @auth()
+                            @endauth
+                            @guest()
+                                <x-nav-link href="/login" :active="request()->is('login')">Log In</x-nav-link>
+                                <x-nav-link href="/register" :active="request()->is('register')">Register</x-nav-link>
+                            @endguest
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
