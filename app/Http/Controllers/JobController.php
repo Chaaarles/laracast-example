@@ -22,7 +22,6 @@ class JobController extends Controller
     public function edit(JobListing $job)
     {
         return view('jobs.edit', ['job' => $job]);
-
     }
 
     public function store()
@@ -48,7 +47,6 @@ class JobController extends Controller
     public function create()
     {
         return view('jobs.create');
-
     }
 
     public function update(JobListing $job)
