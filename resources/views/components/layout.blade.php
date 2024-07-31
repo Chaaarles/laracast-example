@@ -31,6 +31,10 @@
                     <div class="hidden md:block">
                         <div class="ml-10 flex items-baseline space-x-4">
                             @auth()
+                                <form method="post" action="/logout">
+                                    @csrf
+                                    <x-form-button>Log Out</x-form-button>
+                                </form>
                             @endauth
                             @guest()
                                 <x-nav-link href="/login" :active="request()->is('login')">Log In</x-nav-link>

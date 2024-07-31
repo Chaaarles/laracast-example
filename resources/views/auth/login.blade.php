@@ -9,7 +9,13 @@
                     <x-form-field>
                         <x-form-label for="email">Email</x-form-label>
                         <div class="mt-2">
-                            <x-form-input type="email" name="email" id="email" placeholder="john@doe.com" required/>
+                            <x-form-input type="email"
+                                          autocomplete="username"
+                                          name="email"
+                                          id="email"
+                                          placeholder="john@doe.com"
+                                          :value="old('email')"
+                                          required/>
                         </div>
                         <x-form-error :name="'email'"/>
                     </x-form-field>
@@ -17,7 +23,11 @@
                     <x-form-field>
                         <x-form-label for="password">Password</x-form-label>
                         <div class="mt-2">
-                            <x-form-input type="password" name="password" id="password" placeholder="********"
+                            <x-form-input type="password"
+                                          autocomplete="current-password"
+                                          name="password"
+                                          id="password"
+                                          placeholder="********"
                                           required/>
                         </div>
                         <x-form-error :name="'password'"/>

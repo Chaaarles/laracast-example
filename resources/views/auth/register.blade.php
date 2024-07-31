@@ -26,6 +26,7 @@
                         <x-form-label for="password">Password</x-form-label>
                         <div class="mt-2">
                             <x-form-input type="password" name="password" id="password" placeholder="********"
+                                          autocomplete="new-password"
                                           required/>
                         </div>
                         <x-form-error :name="'password'"/>
